@@ -21,7 +21,20 @@ int main(){
     // sort::bubble_sort(arr);
     // sort::print_vector(arr);
 
+    /* Merge Sort (using auziliary space) */
+    // sort::print_vector(arr);
+    // sort::merge_sort(arr, 0, arr.size()-1);
+    // sort::print_vector(arr);
 
+    /* Inplace Merge Sort (Naive) => O(n^2 logn) */
+    sort::print_vector(arr);
+    sort::inplace_merge_sort(arr, 0, arr.size()-1);
+    sort::print_vector(arr);
+    
+    /* Shell Sort (Optimization over Insertion Sort) */
+    // sort::print_vector(arr);
+    // sort::shell_sort(arr);
+    // sort::print_vector(arr);
 
     return 0;
 }
