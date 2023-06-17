@@ -5,12 +5,14 @@
 
 #include<iostream>
 #include<vector>
-#include<utility>
+#include<utility> // module for using pairs in functions
+#include<cstdlib> // module for random number generation
 
 using namespace std;
 
 class sort{
 public:
+    //! UTILITY FUNCTIONS
     // function to find the minimum element from a given sub array
     static void find_min(pair<int,int>& min, const vector<int>& arr, int left, int right);
 
@@ -19,8 +21,11 @@ public:
     // function to print a vector at any given point in time
     static void print_vector(vector<int>& arr);
 
+    // function to generate a random number between a given range (inclusive)
+    static int random_number_generator(int low, int high);
 
-public:
+
+    //! SORTING FUNCTIONS
     // Basic Sorting Algorithms
     static void selection_sort(vector<int>& arr);
 
@@ -38,16 +43,18 @@ public:
 
     static void inplace_merge_shell(vector<int>& arr, int left, int mid, int right);
 
-    //! important method for merging two sorted subarrays into one in place in linear time
+    //! NEEDS FIXING
     static void inplace_merge_optimum(vector<int>& arr, int left, int mid, int right);
 
     static void inplace_merge_sort(vector<int>& arr, int left, int right);
 
-    static void quick_sort(vector<int>& arr);
+    static int partition(vector<int>& arr, int left, int right);
 
-    static void randomized_quick_sort(vector<int>& arr);
+    static void quick_sort(vector<int>& arr, int left, int right);
 
-    static void heap_sort(vector<int>& arr);
+    static int randomized_partition(vector<int>& arr, int left, int right);
+
+    static void randomized_quick_sort(vector<int>& arr, int left, int right);
 
     // Linear Time Sorting Algorithms
     static void counting_sort(vector<int>& arr);

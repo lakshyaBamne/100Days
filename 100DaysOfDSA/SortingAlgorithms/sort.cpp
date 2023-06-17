@@ -5,6 +5,7 @@
 #include<iostream>
 #include<vector>
 #include<utility>
+#include<time.h>
 
 #include "sort.h"
 
@@ -47,6 +48,12 @@ void sort::print_vector(vector<int>& arr){
         cout << arr[i] << " ";
     }
     cout << endl;
+}
+
+// function to generate a random number inside a range (inclusive)
+int sort::random_number_generator(int low, int high){
+    // random seed generated when function is called
+    return ( ( rand() % (high - low + 1) ) + low );
 }
 
 // Basic Sorting Algorithms
@@ -330,6 +337,77 @@ void sort::inplace_merge_sort(vector<int>& arr, int left, int right){
         // inplace_merge_naive(arr, left, mid, right); // O(m^2)
         // inplace_merge_shell(arr, left, mid, right); // O(nlogn)
         inplace_merge_optimum(arr, left, mid, right); // O(n)
+    }
+}
+
+/*
+    !Quick Sort - Unoptimized
+
+    Time Complexity => O(n^2)
+    Space Complexity => O(1)
+*/
+
+// this function partitions the array taking the first element as a pivot
+// then returns the position where the pivot is positioned
+int sort::partition(vector<int>& arr, int left, int right){
+    // we always use the first element of the array as the pivot
+    int pivot = arr[left];
+
+    int p = left;
+    for(int i=left+1 ; i<=right ; i++){
+        if( arr[i] < pivot ){
+            swap(arr[++p], arr[i]);
+        }
+    }
+
+    swap(arr[p], arr[left]);
+
+    return p;
+}
+
+void sort::quick_sort(vector<int>& arr, int left, int right){
+    if( left < right ){
+        // only then the partition function is run
+        int pivot_position = partition(arr, left, right);
+
+        quick_sort(arr, left, pivot_position-1);
+        quick_sort(arr, pivot_position+1, right);
+    }
+}
+
+/*
+    !Quick Sort - Randomized and Optimized
+*/
+
+// this randomized partition is done by selecting a pivot element randomly
+int sort::randomized_partition(vector<int>& arr, int left, int right){
+    int p = random_number_generator(left, right);
+
+    int pivot = arr[p];
+
+    // let us first swap the picked pivot to the first index and then just
+    // follow the same procedure as before
+    swap( arr[left], arr[p] );
+
+    p = left;
+    for( int i=left+1 ; i<=right ; i++ ){
+        if( arr[i] < pivot ){
+            swap(arr[++p], arr[i]);
+        }
+    }
+
+    swap(arr[p], arr[left]);
+
+    return p;
+
+}
+
+void sort::randomized_quick_sort(vector<int>& arr, int left, int right){
+    if( left < right ){
+        int pivot_position = randomized_partition(arr, left, right);
+
+        randomized_quick_sort(arr, left, pivot_position-1);
+        randomized_quick_sort(arr, pivot_position+1, right);
     }
 }
 
