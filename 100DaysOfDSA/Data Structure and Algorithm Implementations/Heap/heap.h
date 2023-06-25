@@ -14,14 +14,11 @@ public:
 
 //! UTILITY FUNCTIONS
 
-
 //! HEAP OPERATIONS
     // heapify operations => both take O(logN)
     static void max_heapify(vector<int>& arr);
     
     static void min_heapify(vector<int>& arr);
-
-
 
 };
 
