@@ -39,26 +39,17 @@ public:
     */
     // one utility function is required for this problem to reverse a subarray efficiently
     static void reverse_subarray(vector<int>& nums, int left, int right);
-
     static void next_permutation(vector<int>& nums);
 
     /*
-        Ques-4 Kadane's Algorithm (Maximum Subarray problem)
-
-        LeetCode -> https://leetcode.com/problems/maximum-subarray/
-        CodingNinjas ->
-    */
-    static int maximum_subarray(vector<int>& nums);
-
-    /*
-        Ques-5a Sort an array of 0's and 1's
+        Ques-4a Sort an array of 0's and 1's
 
         GeeksForGeeks -> https://practice.geeksforgeeks.org/problems/segregate-0s-and-1s5106/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
     */
     static void sort_01(vector<int>& arr);
 
     /*
-        Ques-5b Dutch National Flag Problem (Sort an array of 0's, 1's and 2's)
+        Ques-4b Dutch National Flag Problem (Sort an array of 0's, 1's and 2's)
 
         LeetCode -> https://leetcode.com/problems/sort-colors/
         CodingNinjas -> 
@@ -66,11 +57,24 @@ public:
     static void sort_012(vector<int>& arr);
 
     /*
-        Ques-6 Stock Buy and Sell
+        Ques-5 Merge Sorted Arrays
 
-        LeetCode -> https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-        CodingNinjas -> https://www.codingninjas.com/studio/problems/893405?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website
+        LeetCode -> https://leetcode.com/problems/merge-sorted-array/
     */
-    static int best_time_to_buy_sell_stock(vector<int>& prices);
+    static void merge_sorted_arrays_inplace(vector<int>& arr, int left, int mid, int right);
+
+    /*
+        Ques-6 Rotate Image
+
+        LeetCode -> https://leetcode.com/problems/rotate-image/
+    */
+    static void rotate_image(vector<vector<int>>& matrix);
+
+    /*
+        Ques-7 Merge Intervals
+
+        LeetCode -> https://leetcode.com/problems/merge-intervals/
+    */
+    static vector<vector<int>> merge_intervals(vector<vector<int>>& intervals);
 
 };

@@ -1,19 +1,22 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<utility>
 
 using namespace std;
 
-void reverse_subarray(vector<int>& arr, int left, int right){
-    while(left < right){
-        swap(arr[left++], arr[right--]);
-    }
-}
-
 int main(){
-    string num_str = "12345";
+
+    vector<vector<int>> intervals = {
+        {1,3},
+        {2,6},
+        {8,10},
+        {15,18}
+    };
 
     
+
+
 
     return 0;
 }

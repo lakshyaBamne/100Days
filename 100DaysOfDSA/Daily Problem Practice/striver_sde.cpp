@@ -9,6 +9,7 @@
 #include<vector>
 #include<utility>
 #include<math.h>
+#include<algorithm>
 
 using namespace std;
 
@@ -199,18 +200,7 @@ void StriverSde::next_permutation(vector<int>& nums){
     }
 }
 
-// Ques-4 Kadane's Algorithm (Maximum Subarray problem)
-int StriverSde::maximum_subarray(vector<int>& nums){
-    /*
-        NOTE:-
-        Dynamic Programming Approach
-
-        APPROACH:-
-
-    */
-}
-
-// Ques-5a Sort array of 0's and 1's
+// Ques-4a Sort array of 0's and 1's
 void StriverSde::sort_01(vector<int>& arr){
     /*
         NOTE:-
@@ -239,7 +229,7 @@ void StriverSde::sort_01(vector<int>& arr){
 
 }
 
-// Ques-5b Dutch National Flag Problem (Sort array of 0's, 1's and 2's)
+// Ques-4b Dutch National Flag Problem (Sort array of 0's, 1's and 2's)
 void StriverSde::sort_012(vector<int>& arr){
     int low=0;
     int mid=0;
@@ -266,16 +256,209 @@ void StriverSde::sort_012(vector<int>& arr){
     }
 }
 
-// Ques-6 Stock Buy and Sell
-int StriverSde::best_time_to_buy_sell_stock(vector<int>& arr){
+// Ques-5 Merge Two sorted arrays in place
+void StriverSde::merge_sorted_arrays_inplace(vector<int>& arr, int left, int mid, int right){
     /*
         NOTE:-
-        Dynamic Programming Approach
+        Using this approach of merging two sorted lists in O(n) and in place
+        we can make Merge Sort -> O(nlogn) and In-place
+
+        APPROACH:-
+        To convert a number A into B so that we can retrieve both when required in constant time
+
+        -> Take a number greater than both A and B, say N
+        -> A* <- A + N*B
+
+        To retrieve A from A* => A* % N
+        To retrieve B from A* => A* / N
+    */
+
+    // first we need to find the maximum element in the array
+    int max = INT_MIN;
+    // we also need the minimum value in the array to handle negative numbers
+    int min = INT_MAX;
+
+    // flag variable tells if there are any negative elements in the array
+    bool negative_elements = false;
+
+    for(int i=left ; i<=right ; i++){
+        if( arr[i] > max ){
+            max = arr[i];
+        }
+        if( arr[i] < min ){
+            min = arr[i];
+        }
+    }
+
+    cout << "Max value : " << max << endl;
+    cout << "Min value : " << min << endl;
+
+    max++;
+
+    // we need to make sure that this element is non-zero
+    // because we are using division and modulus operators
+    if(max == 0){
+        max++;
+    }
+
+    // if there are negative numbers we need to deal with them
+    if( min < 0 ){
+        negative_elements = true;
+        min = abs(min);
+
+        for(int i=left ; i<=right ; i++){
+            arr[i] = arr[i] + min;
+        }
+
+        max = max + min;
+    }
+
+    for(int i=0 ; i<arr.size() ; i++){
+        cout << arr[i] << " ";
+    }
+
+    cout << "\n";
+
+    int left_pointer = left;
+    int right_pointer = mid + 1;
+    int main_pointer = left;
+
+    // when this loop terminates, one of two pointers would have gone out of scope
+    while( (left_pointer <= mid) && (right_pointer <= right) ){
+        if( arr[left_pointer]%max <= arr[right_pointer]%max ){
+            arr[main_pointer] = arr[main_pointer] + max*(arr[left_pointer]%max);
+
+            main_pointer++;
+            left_pointer++;
+        }
+        else{
+            arr[main_pointer] = arr[main_pointer] + max*(arr[right_pointer]%max);
+
+            main_pointer++;
+            right_pointer++;
+        }
+    }
+
+    // this loop runs if right pointer went out of range first
+    while( left_pointer <= mid ){
+        arr[main_pointer] = arr[main_pointer] + max*(arr[left_pointer]%max);
+
+        main_pointer++;
+        left_pointer++;
+    }
+
+    // this loop runs if left pointer went out of range first
+    while( right_pointer <= right ){
+        arr[main_pointer] = arr[main_pointer] + max*(arr[right_pointer]%max);
+
+        main_pointer++;
+        right_pointer++;
+    }
+
+    // at the end we should go through the array once to divide every element by max
+    for(int i=left ; i<=right ; i++){
+        arr[i] = arr[i] / max;
+    }   
+
+    // now we need to make all the negative numbers negative again
+    
+    if(negative_elements == true){
+        for(int i=left ; i<=right ; i++){
+            arr[i] = arr[i] - min;
+        }
+    }
+}
+
+// Ques-6 Rotate Image
+void StriverSde::rotate_image(vector<vector<int>>& matrix){
+    /*
+        NOTE:-
+
+        APPROACH:-
+        first find the transpose of the matrix
+        then reverse the order of columns in the matrix
+    */
+
+    // first we should transpose the matrix
+    for(int i=0 ; i<matrix.size() ; i++){
+        for(int j=0 ; j<matrix[0].size() ; j++){
+            if( i<j ){
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+    }
+
+    // now we want to reverse the order of columns in the matrix
+    int left = 0; // first column
+    int right = matrix[0].size()-1; //last column
+
+    while( left < right ){
+        for(int i=0 ; i<matrix.size() ; i++){
+            swap( matrix[i][left], matrix[i][right] );
+        }
+
+        left++;
+        right--;
+    }
+
+}
+
+// Ques-7 Merge Intervals !INCOMPLETE
+vector<vector<int>> StriverSde::merge_intervals(vector<vector<int>>& intervals){
+    /*
+        NOTE:-
 
         APPROACH:-
 
     */
 
+    // we also need to sort the array of intervals first
+    sort(intervals.begin(), intervals.end());
+
+    // edge case when the input has only 1 interval in the list
+    if( intervals.size() == 1 ){
+        return intervals;
+    }
+
+    vector<vector<int>> new_intervals;
+    vector<int> temp_interval;
+    
+    int left=0;
+    int right=1;
+
+    while( (left < intervals.size()) && (right < intervals.size()) ){
+        temp_interval.clear();
+
+        // we add the left point of the merged interval first
+        temp_interval.push_back(intervals[left][0]);
+
+        while( intervals[left][1] >= intervals[right][0] ){
+            if( right < intervals.size()-1 ){
+                left++;
+                right++;
+            }
+            else{
+                left++;
+                right++;
+                break;
+            }
+        }
+
+        temp_interval.push_back(intervals[left][1]);
+
+        new_intervals.push_back(temp_interval);
+
+        left++;
+        right++;
+    }
+
+    while(left < intervals.size()){
+        new_intervals.push_back(intervals[left]);
+        
+        left++;
+    }
+
+    return new_intervals;
 
 }
 

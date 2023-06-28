@@ -20,3 +20,13 @@ Data Strucutres & Algorithms
     - None on this day
 
 ---
+
+*DAY-2 27th-June-2023*
+
+- Question Practice
+	- [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+	- [Next Permutation](https://leetcode.com/problems/next-permutation/)
+
+- DSA Implementations
+
+---
