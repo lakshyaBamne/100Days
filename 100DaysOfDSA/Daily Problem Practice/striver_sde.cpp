@@ -446,22 +446,121 @@ vector<vector<int>> StriverSde::merge_intervals(vector<vector<int>>& intervals){
 }
 
 
-
+// !INCOMPLETE
 // Ques-8 GIF of Square Root of x
 int StriverSde::sqrt(int x){
     /*
         NOTE:-
 
         APPROACH:-
-
+        Binary Search approach to find the Square root of a number
+        -> can be extended to find any nth root of the number
     */
-
-    // naive edge case
-    if(x == 1){
+    if(x < 3){
         return 1;
     }
 
+    int left_limit = 1;
+    int right_limit = (x/2)+1;
+
+    long long int mid;
+
+    while( left_limit < right_limit-1 ){
+        mid = (left_limit + right_limit) / 2;
+
+        if( mid*mid <= x ){
+            left_limit = mid;
+        }  
+        else{
+            right_limit = mid;
+        }
+    }
+
+    return left_limit;
+}
+
+// Ques-9a Inversion Count using Merge Sort
+int StriverSde::inversion_count_merge(vector<int>& arr, int left, int mid, int right){
+    // this is the return variable
+    int inversion_count_boundary = 0;
     
+    vector<int> left_subarray, right_subarray;
+
+    for(int i=left ; i<=mid ; i++){
+        left_subarray.push_back(arr[i]);
+    }
+    for(int i=mid+1 ; i<=right ; i++){
+        right_subarray.push_back(arr[i]);
+    }
+
+    int left_pointer = 0;
+    int right_pointer = 0;
+
+    int main_pointer = left;
+
+    while( (left_pointer < left_subarray.size()) && (right_pointer < right_subarray.size())){
+        if( left_subarray[left_pointer] <= right_subarray[right_pointer] ){
+            arr[main_pointer] = left_subarray[left_pointer];
+            left_pointer++;
+            main_pointer++;
+        }
+        else{
+            // first increase the inversion count
+
+            inversion_count_boundary = inversion_count_boundary + (left_subarray.size() - left_pointer);
+
+            arr[main_pointer] = right_subarray[right_pointer];
+            main_pointer++;
+            right_pointer++;
+        }
+    }
+
+    if( left_pointer < left_subarray.size() ){
+        while( left_pointer < left_subarray.size() ){
+
+            arr[main_pointer] = left_subarray[left_pointer];
+            left_pointer++;
+            main_pointer++;
+        }
+    }
+
+    while( right_pointer < right_subarray.size() ){
+        arr[main_pointer] = right_subarray[right_pointer];
+        main_pointer++;
+        right_pointer++;
+    }
+
+    return inversion_count_boundary;
+
+}
+
+int StriverSde::inversion_count_mergesort(vector<int>& arr, int left, int right){
+    int mid = (left + right) / 2;
+
+    if(left < right){
+        return inversion_count_mergesort(arr, left, mid) + \
+        inversion_count_mergesort(arr, mid+1, right) + \
+        inversion_count_merge(arr, left, mid, right);
+    }
+    else{
+        // single elements do not have any inversion
+        return 0;
+    }
+}
+
+// Ques-9b Inversion Count using Heap Sort
+int StriverSde::inversion_count_heapsort(vector<int>& arr){
+    return 0;
+}
+
+// Ques-9c Inversion Count BIT
+int StriverSde::inversion_count_bit(vector<int>& arr){
+    return 0;
+}
+
+// Ques-9d Inversion Count using Self-balancing Binary Search Tree
+int StriverSde::inversion_count_bst(vector<int>& arr){
+    return 0;
 }
 
 

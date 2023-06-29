@@ -84,4 +84,31 @@ public:
     */
     static int sqrt(int x);
 
+    /*
+        Ques-9 Inversion Count of an Array
+
+        GeeksForGeeks -> https://practice.geeksforgeeks.org/problems/inversion-of-array-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+    */
+
+    // 9a: Using Merge Sort
+    static int inversion_count_merge(vector<int>& arr, int left, int mid, int right);
+    static int inversion_count_mergesort(vector<int>& arr, int left, int right);
+
+    // ! INCOMPLETE
+    // 9b: Using Heap Sort 
+    static int inversion_count_heapsort(vector<int>& arr);
+
+    // ! INCOMPLETE
+    // 9c: Using BIT
+    static int inversion_count_bit(vector<int>& arr);
+
+    // 9d: Using Self-balancing Binary Search Tree
+    static int inversion_count_bst(vector<int>& arr);
+
+    /*
+        Ques-10 Valid Palindrome
+
+        LeetCode -> https://leetcode.com/problems/valid-palindrome/
+    */
+
 };

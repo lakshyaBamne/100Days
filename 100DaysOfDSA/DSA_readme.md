@@ -40,3 +40,19 @@ Data Strucutres & Algorithms
 
 - DSA Implementations
 	- None on this day
+
+---
+
+*DAY-4 29th-June-2023*
+
+*MILESTONE -> Completed 10 questions on LeetCode*
+
+- Question Practice
+    - [Inversion Count using Merge Sort](https://practice.geeksforgeeks.org/problems/inversion-of-array-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article)
+    - [Square Root using Binary Search](https://leetcode.com/problems/sqrtx/)
+    - [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+
+- DSA Implementations
+    - None on this day
+
+---
