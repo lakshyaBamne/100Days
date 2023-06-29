@@ -77,4 +77,11 @@ public:
     */
     static vector<vector<int>> merge_intervals(vector<vector<int>>& intervals);
 
+    /*
+        Ques-8 GIF of Square Root of x
+
+        LeetCode -> https://leetcode.com/problems/sqrtx/
+    */
+    static int sqrt(int x);
+
 };

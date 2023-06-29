@@ -15,32 +15,25 @@ int main(){
         {1,3},
         {2,6},
         {8,10},
-        {9,18}
+        {15,18},
+        {16,20}
     };
 
-    // vector<vector<int>> intervals = {
-    //     {1,4}
-    // };
-
-    for(int i=0 ; i<intervals.size() ; i++){
-        for(int j=0 ; j<2 ; j++){
-            cout << intervals[i][j] << " ";
+    for(auto it : intervals){
+        for(auto i : it){
+            cout << i << " ";
         }
         cout << "\n";
     }
 
-    cout << "\n\n";
+    auto output = StriverSde::merge_intervals(intervals);
 
-    intervals = StriverSde::merge_intervals(intervals);
-
-    for(int i=0 ; i<intervals.size() ; i++){
-        for(int j=0 ; j<2 ; j++){
-            cout << intervals[i][j] << " ";
+    for(auto it : output){
+        for(auto i : it){
+            cout << i << " ";
         }
         cout << "\n";
     }
-
-    cout << "\n\n";
 
     return 0;
 }

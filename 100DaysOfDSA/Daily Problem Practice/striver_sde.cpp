@@ -160,6 +160,10 @@ void StriverSde::next_permutation(vector<int>& nums){
     /*
         NOTE:-
 
+        This solution works fine when implemented in Python on LeetCode
+        but gives overflow/segmentation fault in C++ due to the possibility of left
+        being negative.
+
         APPROACH:-
         To find the first instance of pair from the back of the array
         where the elements are in increasing order (calling this pair breakpoint)
@@ -171,33 +175,40 @@ void StriverSde::next_permutation(vector<int>& nums){
         then reverse all the remaining elements of the array right of breakpoint
     */
 
-    int bp, bp_temp;
+    int left;
+    int right;
 
+    // a single element has only 1 permutation
     if( nums.size() > 1 ){
-        bp = nums.size()-2;
-        bp_temp = nums.size()-1;
-        
-        // find breakpoint
-        while( (nums[bp]>=nums[bp_temp]) && (bp>=0) ){
-            bp--;
-            bp_temp--;
+        left = nums.size()-2;
+        right = nums.size()-1;
+
+        while( (nums[left] >= nums[right]) && (left >= 0) ){
+            left--;
+            right--;
         }
 
-        if( bp<0 ){
+        if( left < 0 ){
+            // the array is reverse sorted hence there is no next permutation
             reverse_subarray(nums, 0, nums.size()-1);
         }
         else{
-            bp_temp = nums.size()-1;
+            // now the left index store the breakpoint
+            right = nums.size()-1;
 
-            while( (nums[bp]>=nums[bp_temp]) && (bp_temp>bp+1) ){
-                bp_temp--;
+            while( (right > left) && (nums[left] >= nums[right]) ){
+                right--;
             }
 
-            swap(nums[bp], nums[bp_temp]);
+            swap(nums[left], nums[right]);
 
-            reverse_subarray(nums, bp+1, nums.size()-1);
+            reverse_subarray(nums, left+1, nums.size()-1);
         }
+
+
     }
+
+
 }
 
 // Ques-4a Sort array of 0's and 1's
@@ -409,56 +420,48 @@ vector<vector<int>> StriverSde::merge_intervals(vector<vector<int>>& intervals){
         NOTE:-
 
         APPROACH:-
+        -> add intervals to the output array
+        -> then compare the left value of the next interval to the
+        right value of the last added interval to determine if merging is required
+    */
+
+    vector<vector<int>> output;
+
+    for(auto it : intervals){
+        if( output.empty() ){
+            output.push_back(it);
+        }
+        else{
+            if( output.back()[1] < it[0] ){
+                // no overlap
+                output.push_back(it);
+            }
+            else{
+                output.back()[1] = max( output.back()[1], it[1] ); 
+            }
+        }
+    }
+
+    return output;
+}
+
+
+
+// Ques-8 GIF of Square Root of x
+int StriverSde::sqrt(int x){
+    /*
+        NOTE:-
+
+        APPROACH:-
 
     */
 
-    // we also need to sort the array of intervals first
-    sort(intervals.begin(), intervals.end());
-
-    // edge case when the input has only 1 interval in the list
-    if( intervals.size() == 1 ){
-        return intervals;
+    // naive edge case
+    if(x == 1){
+        return 1;
     }
 
-    vector<vector<int>> new_intervals;
-    vector<int> temp_interval;
     
-    int left=0;
-    int right=1;
-
-    while( (left < intervals.size()) && (right < intervals.size()) ){
-        temp_interval.clear();
-
-        // we add the left point of the merged interval first
-        temp_interval.push_back(intervals[left][0]);
-
-        while( intervals[left][1] >= intervals[right][0] ){
-            if( right < intervals.size()-1 ){
-                left++;
-                right++;
-            }
-            else{
-                left++;
-                right++;
-                break;
-            }
-        }
-
-        temp_interval.push_back(intervals[left][1]);
-
-        new_intervals.push_back(temp_interval);
-
-        left++;
-        right++;
-    }
-
-    while(left < intervals.size()){
-        new_intervals.push_back(intervals[left]);
-        
-        left++;
-    }
-
-    return new_intervals;
-
 }
+
 

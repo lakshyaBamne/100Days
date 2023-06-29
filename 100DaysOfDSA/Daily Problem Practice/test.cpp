@@ -5,15 +5,19 @@
 
 using namespace std;
 
+auto sqrt(int x){
+    vector<int> axis;
+
+    for(int i=1 ; i<= x ; i++){
+        axis.push_back(i);
+    }
+
+    
+}
+
 int main(){
 
-    vector<vector<int>> intervals = {
-        {1,3},
-        {2,6},
-        {8,10},
-        {15,18}
-    };
-
+    
     
 
 

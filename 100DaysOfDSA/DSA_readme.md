@@ -25,8 +25,18 @@ Data Strucutres & Algorithms
 
 - Question Practice
 	- [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
-	- [Next Permutation](https://leetcode.com/problems/next-permutation/)
+	- [Rotate Matrix](https://leetcode.com/problems/rotate-image/)
 
 - DSA Implementations
+	- None on this day
 
 ---
+
+*DAY-3 28th-June-2023*
+
+- Question Practice
+	- [Next Permutation](https://leetcode.com/problems/next-permutation/)
+	- [Merge Intervals](https://leetcode.com/problems/merge-intervals/)
+
+- DSA Implementations
+	- None on this day
