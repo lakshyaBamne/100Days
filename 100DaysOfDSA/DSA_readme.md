@@ -45,7 +45,7 @@ Data Strucutres & Algorithms
 
 *DAY-4 29th-June-2023*
 
-*MILESTONE -> Completed 10 questions on LeetCode*
+*__MILESTONE__ -> Completed 10 questions on LeetCode*
 
 - Question Practice
     - [Inversion Count using Merge Sort](https://practice.geeksforgeeks.org/problems/inversion-of-array-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article)
@@ -54,5 +54,14 @@ Data Strucutres & Algorithms
 
 - DSA Implementations
     - None on this day
+
+---
+
+*DAY-5 30th-June-2023*
+
+- Question Practice
+    - [Search in sorted 2D matrix](https://leetcode.com/problems/search-a-2d-matrix/)
+    - [Majority Element - I](https://leetcode.com/problems/majority-element/)
+    - [Remove Element](https://leetcode.com/problems/remove-element/)
 
 ---

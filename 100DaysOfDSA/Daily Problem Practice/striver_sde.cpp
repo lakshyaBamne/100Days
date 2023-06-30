@@ -445,8 +445,6 @@ vector<vector<int>> StriverSde::merge_intervals(vector<vector<int>>& intervals){
     return output;
 }
 
-
-// !INCOMPLETE
 // Ques-8 GIF of Square Root of x
 int StriverSde::sqrt(int x){
     /*
@@ -548,19 +546,94 @@ int StriverSde::inversion_count_mergesort(vector<int>& arr, int left, int right)
     }
 }
 
+// ! INCOMPLETE
 // Ques-9b Inversion Count using Heap Sort
 int StriverSde::inversion_count_heapsort(vector<int>& arr){
     return 0;
 }
 
+// ! INCOMPLETE
 // Ques-9c Inversion Count BIT
 int StriverSde::inversion_count_bit(vector<int>& arr){
     return 0;
 }
 
+// ! INCOMPLETE
 // Ques-9d Inversion Count using Self-balancing Binary Search Tree
 int StriverSde::inversion_count_bst(vector<int>& arr){
     return 0;
 }
 
+// Ques-10 Search in 2D matrix
+bool StriverSde::search_matrix(vector<vector<int>>& matrix, int target){
+    /*
+        NOTE:-
+
+        APPROACH:-
+        Start from a corner in the matrix where the element is positioned
+        as in the middle of a sorted array.
+        1) if we start from bottom left corner
+        => element right to it is greater
+        => element above it is smaller
+
+        -> Move in a binary search fashion in the direction by comparison
+        to the corner element
+    */
+
+    // we start from the bottom left corner
+    int start_row = matrix.size()-1;
+    int start_col = 0;
+
+    while( (start_row>=0) && (start_col<=matrix[0].size()-1) ){
+        if( matrix[start_row][start_col] == target ){
+            return true;
+        }
+        else if(matrix[start_row][start_col] < target){
+            start_col++;
+        }
+        else if(matrix[start_row][start_col] > target){
+            start_row--;
+        }
+    }
+
+    return false;
+
+}
+
+// Ques-11 Majority Element (>n/2)
+int StriverSde::majority_element(vector<int>& nums){
+    /*
+        NOTE:-
+
+        APPROACH:-
+
+        Moore Voting Algorithm - works due to assumption that a number is always in majority
+    */
+
+    int count=0;
+    int candidate;
+
+    for(int i=0 ; i<nums.size() ; i++){
+        if( count == 0 ){
+            candidate = nums[i];
+            count++;
+        }
+        else{
+            if( nums[i] == candidate ){
+                count++;
+            }
+            else if( (nums[i] != candidate) && (count > 1) ){
+                count--;
+            }
+
+            if( count == 0 ){
+                candidate = nums[i];
+                count = 0;
+            }
+        }
+
+    }
+
+    return candidate;
+}
 

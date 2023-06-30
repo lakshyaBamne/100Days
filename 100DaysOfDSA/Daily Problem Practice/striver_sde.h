@@ -102,13 +102,23 @@ public:
     // 9c: Using BIT
     static int inversion_count_bit(vector<int>& arr);
 
+    // ! INCOMPLETE
     // 9d: Using Self-balancing Binary Search Tree
     static int inversion_count_bst(vector<int>& arr);
 
     /*
-        Ques-10 Valid Palindrome
+        Ques-10 Search in 2D matrix
 
-        LeetCode -> https://leetcode.com/problems/valid-palindrome/
+        LeetCode -> https://leetcode.com/problems/search-a-2d-matrix/
     */
+    static bool search_matrix(vector<vector<int>>& matrix, int target);
+
+    /*
+        Ques-11 Majority Element
+
+        LeetCode -> https://leetcode.com/problems/majority-element/
+    */
+    static int majority_element(vector<int>& nums);
+    
 
 };

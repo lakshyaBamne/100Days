@@ -5,16 +5,6 @@
 
 using namespace std;
 
-auto sqrt(int x){
-    vector<int> axis;
-
-    for(int i=1 ; i<= x ; i++){
-        axis.push_back(i);
-    }
-
-    
-}
-
 int main(){
 
     
