@@ -64,4 +64,17 @@ Data Strucutres & Algorithms
     - [Majority Element - I](https://leetcode.com/problems/majority-element/)
     - [Remove Element](https://leetcode.com/problems/remove-element/)
 
+- DSA Implementation
+    - None on this day
+
+---
+
+*DAY-6 1st-July-2023*
+
+- Question Practice
+    -   
+
+- DSA Implementation
+    - None on this day
+
 ---

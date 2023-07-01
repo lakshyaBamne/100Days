@@ -1,100 +1,14 @@
-/*
-    Implementations of the functions acting as solutions for the
-    Striver SDE sheet
-*/
-
-#include "striver_sde.h"
+#include "Arrays.h"
 
 #include<iostream>
 #include<vector>
 #include<utility>
-#include<math.h>
 #include<algorithm>
 
 using namespace std;
 
-// Ques-1 Set Matrix Zeroes
-void StriverSde::set_matrix_zeroes(vector<vector<int>>& matrix){
-    /*
-        NOTE:-
-        Time complexity cannot be optimized below O(mn)
-        because we need to access and check every element in the mxn matrix
-
-        APPROACH:-
-        We store the information about which row and column to make zero
-        in the first row and column of the matrix itself
-    */
-
-    // first column in completely used to store the row information
-    // thus one extra variable is needed to store information about the first index of column
-    int col0=1;
-
-    // if there is a 0 in the first column
-    for(int i=0 ; i<matrix[0].size() ; i++){
-        if( matrix[0][i] == 0 ){
-            col0 = 0;
-        }
-    }
-
-    // if there is a 0 in the first row
-    for(int i=0 ; i<matrix.size() ; i++){
-        if( matrix[i][0] == 0 ){
-            matrix[0][0] = 0;
-        }
-    }
-
-    // all the other elements
-    for(int i=1 ; i<matrix.size(); i++){
-        for(int j=1 ; j<matrix[0].size() ; j++){
-            if( matrix[i][j] == 0 ){
-                matrix[i][0] = 0;
-                matrix[0][j] = 0;
-            }
-        }
-    }
-
-    // now we start making the rows and columns zero using the acquired information
-    // start by changing only the elements in the matrix without first row and column
-    for(int i=1 ; i<matrix.size() ; i++){
-        if( matrix[i][0] == 0 ){
-            for(int j=1 ; j<matrix[0].size() ; j++){
-                matrix[i][j] = 0;
-            }
-        }
-    }
-
-    for(int i=1 ; i<matrix[0].size() ; i++){
-        if( matrix[0][i] == 0 ){
-            for(int j=1 ; j<matrix.size() ; j++){
-                matrix[j][i] = 0;
-            }
-        }
-    }
-
-    // now we need to change the first row and column based on values of extra variable
-    if( matrix[0][0]==0 && col0==0 ){
-        // both first row and column must be entirely zero
-        for(int i=0 ; i<matrix.size() ; i++){
-            matrix[i][0] = 0;
-        }
-        for(int i=0 ; i<matrix[0].size() ; i++){
-            matrix[0][i] = 0;
-        }
-    }
-    else if( matrix[0][0]==0 && col0!=0 ){
-        for(int i=0 ; i<matrix.size() ; i++){
-            matrix[i][0] = 0;
-        }
-    }
-    else if( matrix[0][0]!=0 && col0==0 ){
-        for(int i=0 ; i<matrix[0].size() ; i++){
-            matrix[0][i] = 0;
-        }
-    }
-}
-
-// Ques-2 Pascal's Triangle
-vector<vector<int>> StriverSde::pascals_triangle(int num_rows){
+// Ques-1 Pascal's Triangle
+vector<vector<int>> ArrayProblems::pascals_triangle(int num_rows){
     /*
         NOTE:-
         Revisit after learning Memoization to calculate factorial
@@ -147,16 +61,16 @@ vector<vector<int>> StriverSde::pascals_triangle(int num_rows){
     }
 }
 
-// Ques-3 Next Permutation
+// Ques-2 Next Permutation
 
 // utility function to reverse a given subarray in O(n)
-void StriverSde::reverse_subarray(vector<int>& nums, int left, int right){
+void ArrayProblems::reverse_subarray(vector<int>& nums, int left, int right){
     while(left < right){
         swap(nums[left++], nums[right--]);
     }
 }
 
-void StriverSde::next_permutation(vector<int>& nums){
+void ArrayProblems::next_permutation(vector<int>& nums){
     /*
         NOTE:-
 
@@ -211,8 +125,8 @@ void StriverSde::next_permutation(vector<int>& nums){
 
 }
 
-// Ques-4a Sort array of 0's and 1's
-void StriverSde::sort_01(vector<int>& arr){
+// Ques-3a Sort array of 0's and 1's
+void ArrayProblems::sort_01(vector<int>& arr){
     /*
         NOTE:-
         Most basic Two Pointer approach problem
@@ -240,8 +154,8 @@ void StriverSde::sort_01(vector<int>& arr){
 
 }
 
-// Ques-4b Dutch National Flag Problem (Sort array of 0's, 1's and 2's)
-void StriverSde::sort_012(vector<int>& arr){
+// Ques-3b Dutch National Flag Problem (Sort array of 0's, 1's and 2's)
+void ArrayProblems::sort_012(vector<int>& arr){
     int low=0;
     int mid=0;
     int high=arr.size()-1;
@@ -267,8 +181,8 @@ void StriverSde::sort_012(vector<int>& arr){
     }
 }
 
-// Ques-5 Merge Two sorted arrays in place
-void StriverSde::merge_sorted_arrays_inplace(vector<int>& arr, int left, int mid, int right){
+// Ques-4 Merge Two sorted arrays in place
+void ArrayProblems::merge_sorted_arrays_inplace(vector<int>& arr, int left, int mid, int right){
     /*
         NOTE:-
         Using this approach of merging two sorted lists in O(n) and in place
@@ -380,42 +294,48 @@ void StriverSde::merge_sorted_arrays_inplace(vector<int>& arr, int left, int mid
     }
 }
 
-// Ques-6 Rotate Image
-void StriverSde::rotate_image(vector<vector<int>>& matrix){
+// Ques-5 Majority Element (>n/2)
+int ArrayProblems::majority_element(vector<int>& nums){
     /*
         NOTE:-
 
         APPROACH:-
-        first find the transpose of the matrix
-        then reverse the order of columns in the matrix
+
+        Moore Voting Algorithm - works due to assumption that a number is always in majority
     */
 
-    // first we should transpose the matrix
-    for(int i=0 ; i<matrix.size() ; i++){
-        for(int j=0 ; j<matrix[0].size() ; j++){
-            if( i<j ){
-                swap(matrix[i][j], matrix[j][i]);
+    int count=0;
+    int candidate;
+
+    for(int i=0 ; i<nums.size() ; i++){
+        if( count == 0 ){
+            candidate = nums[i];
+            count++;
+        }
+        else{
+            if( nums[i] == candidate ){
+                count++;
+            }
+            else if( (nums[i] != candidate) && (count > 1) ){
+                count--;
+            }
+
+            if( count == 0 ){
+                candidate = nums[i];
+                count = 0;
             }
         }
+
     }
 
-    // now we want to reverse the order of columns in the matrix
-    int left = 0; // first column
-    int right = matrix[0].size()-1; //last column
+    return candidate;
 
-    while( left < right ){
-        for(int i=0 ; i<matrix.size() ; i++){
-            swap( matrix[i][left], matrix[i][right] );
-        }
-
-        left++;
-        right--;
-    }
-
+    
 }
 
-// Ques-7 Merge Intervals !INCOMPLETE
-vector<vector<int>> StriverSde::merge_intervals(vector<vector<int>>& intervals){
+// ! INCOMPLETE
+// Ques-6 Merge Intervals
+vector<vector<int>> ArrayProblems::merge_intervals(vector<vector<int>>& intervals){
     /*
         NOTE:-
 
@@ -445,40 +365,8 @@ vector<vector<int>> StriverSde::merge_intervals(vector<vector<int>>& intervals){
     return output;
 }
 
-// Ques-8 GIF of Square Root of x
-int StriverSde::sqrt(int x){
-    /*
-        NOTE:-
-
-        APPROACH:-
-        Binary Search approach to find the Square root of a number
-        -> can be extended to find any nth root of the number
-    */
-    if(x < 3){
-        return 1;
-    }
-
-    int left_limit = 1;
-    int right_limit = (x/2)+1;
-
-    long long int mid;
-
-    while( left_limit < right_limit-1 ){
-        mid = (left_limit + right_limit) / 2;
-
-        if( mid*mid <= x ){
-            left_limit = mid;
-        }  
-        else{
-            right_limit = mid;
-        }
-    }
-
-    return left_limit;
-}
-
-// Ques-9a Inversion Count using Merge Sort
-int StriverSde::inversion_count_merge(vector<int>& arr, int left, int mid, int right){
+// Ques-7a Inversion Count using Merge Sort
+int ArrayProblems::inversion_count_merge(vector<int>& arr, int left, int mid, int right){
     // this is the return variable
     int inversion_count_boundary = 0;
     
@@ -532,7 +420,7 @@ int StriverSde::inversion_count_merge(vector<int>& arr, int left, int mid, int r
 
 }
 
-int StriverSde::inversion_count_mergesort(vector<int>& arr, int left, int right){
+int ArrayProblems::inversion_count_mergesort(vector<int>& arr, int left, int right){
     int mid = (left + right) / 2;
 
     if(left < right){
@@ -547,93 +435,55 @@ int StriverSde::inversion_count_mergesort(vector<int>& arr, int left, int right)
 }
 
 // ! INCOMPLETE
-// Ques-9b Inversion Count using Heap Sort
-int StriverSde::inversion_count_heapsort(vector<int>& arr){
+// Ques-7b Inversion Count using Heap Sort
+int ArrayProblems::inversion_count_heapsort(vector<int>& arr){
     return 0;
 }
 
 // ! INCOMPLETE
-// Ques-9c Inversion Count BIT
-int StriverSde::inversion_count_bit(vector<int>& arr){
+// Ques-7c Inversion Count BIT
+int ArrayProblems::inversion_count_bit(vector<int>& arr){
     return 0;
 }
 
 // ! INCOMPLETE
-// Ques-9d Inversion Count using Self-balancing Binary Search Tree
-int StriverSde::inversion_count_bst(vector<int>& arr){
+// Ques-7d Inversion Count using Self-balancing Binary Search Tree
+int ArrayProblems::inversion_count_bst(vector<int>& arr){
     return 0;
 }
 
-// Ques-10 Search in 2D matrix
-bool StriverSde::search_matrix(vector<vector<int>>& matrix, int target){
-    /*
-        NOTE:-
 
-        APPROACH:-
-        Start from a corner in the matrix where the element is positioned
-        as in the middle of a sorted array.
-        1) if we start from bottom left corner
-        => element right to it is greater
-        => element above it is smaller
+// Ques-8 Remove Duplicates
+int ArrayProblems::remove_duplicates(vector<int>& nums){
+    int left = 0;
 
-        -> Move in a binary search fashion in the direction by comparison
-        to the corner element
-    */
+    int right = 0;
 
-    // we start from the bottom left corner
-    int start_row = matrix.size()-1;
-    int start_col = 0;
-
-    while( (start_row>=0) && (start_col<=matrix[0].size()-1) ){
-        if( matrix[start_row][start_col] == target ){
-            return true;
-        }
-        else if(matrix[start_row][start_col] < target){
-            start_col++;
-        }
-        else if(matrix[start_row][start_col] > target){
-            start_row--;
-        }
-    }
-
-    return false;
-
-}
-
-// Ques-11 Majority Element (>n/2)
-int StriverSde::majority_element(vector<int>& nums){
-    /*
-        NOTE:-
-
-        APPROACH:-
-
-        Moore Voting Algorithm - works due to assumption that a number is always in majority
-    */
-
-    int count=0;
-    int candidate;
-
-    for(int i=0 ; i<nums.size() ; i++){
-        if( count == 0 ){
-            candidate = nums[i];
-            count++;
+    while( right < nums.size() ){
+        if( nums[left] == nums[right] ){
+            right++;
         }
         else{
-            if( nums[i] == candidate ){
-                count++;
-            }
-            else if( (nums[i] != candidate) && (count > 1) ){
-                count--;
-            }
-
-            if( count == 0 ){
-                candidate = nums[i];
-                count = 0;
-            }
+            swap(nums[++left], nums[right++]);
         }
-
     }
 
-    return candidate;
+    return ++left;
 }
 
+// Ques-9 Remove Element
+int ArrayProblems::remove_element(vector<int>& nums, int val){
+    int left=0;
+    int right=nums.size()-1;
+
+    while( left <= right ){
+        if( nums[left] != val ){
+            left++;
+        }
+        else{
+            swap(nums[left], nums[right--]);
+        }
+    }
+
+    return left;
+}
