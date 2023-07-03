@@ -72,9 +72,55 @@ Data Strucutres & Algorithms
 *DAY-6 1st-July-2023*
 
 - Question Practice
-    -   
+    -   [Reverse Words in a string](https://leetcode.com/problems/reverse-words-in-a-string/)
 
 - DSA Implementation
     - None on this day
+
+---
+
+*DAY-7 2nd-July-2023*
+
+- Question Practice
+    - [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+
+- DSA Implementations
+    - None on this day
+
+---
+
+*DAY-8 3rd-July-2023*
+
+- Question Practice
+    - [Check if all A's appear before B's](https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/)
+
+- DSA Implementations
+    - None on this day
+
+---
+
+*DAY-9 4th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementations
+    - None on this day
+
+---
+
+*DAY-10 5th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementations
+    - None on this day
+
+---
+
+*__SUMMARY : DAY 1-10__*
+
+- 
 
 ---
