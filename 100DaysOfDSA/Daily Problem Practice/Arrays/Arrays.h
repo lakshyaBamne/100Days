@@ -1,11 +1,12 @@
 #include<vector>
 #include<utility>
 #include<algorithm>
+#include<string>
 
 using namespace std;
 
 class ArrayProblems{
-    
+public:    
 
     /*
         Ques-1 Pascal's Triangle
@@ -92,7 +93,15 @@ class ArrayProblems{
 
         LeetCode -> https://leetcode.com/problems/remove-element/ 
     */
-
     static int remove_element(vector<int>& nums, int val);
+
+    /*
+        Ques-10 Summary Ranges
+
+        LeetCode -> https://leetcode.com/problems/summary-ranges/
+    */
+    static vector<string> summary_ranges(vector<int>& nums);
+
+    
 };
 

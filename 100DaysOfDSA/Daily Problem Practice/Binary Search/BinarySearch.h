@@ -5,6 +5,7 @@
 using namespace std;
 
 class BinarySearchProblems{
+public:
     /*
         Ques-1 GIF of Square Root of x
 
@@ -27,5 +28,15 @@ class BinarySearchProblems{
         LeetCode -> https://leetcode.com/problems/search-in-rotated-sorted-array/
     */
     static int search_rotated(vector<int>& nums, int target);
+
+    /*
+        Ques-4 Insert Interval
+
+        LeetCode -> https://leetcode.com/problems/insert-interval/
+    */
+
+    // subroutine required to solve the insert interval problem
+    static vector<vector<int>> merge_intervals(vector<vector<int>>& intervals);
+    static vector<vector<int>> insert_interval(vector<vector<int>>& intervals, vector<int>& new_interval);
 
 };

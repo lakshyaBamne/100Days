@@ -4,6 +4,7 @@
 #include<vector>
 #include<utility>
 #include<algorithm>
+#include<string>
 
 using namespace std;
 
@@ -486,4 +487,74 @@ int ArrayProblems::remove_element(vector<int>& nums, int val){
     }
 
     return left;
+}
+
+// Ques-10 Summary Ranges
+vector<string> ArrayProblems::summary_ranges(vector<int>& nums){
+    /*
+        NOTE:-
+        -> we can use the to_string() method to convert an integer to string
+        APPROACH:-
+
+    */
+
+    vector<string> output;
+
+    if( nums.size() == 0 ){
+        return output;
+    }
+    else if( nums.size() == 1 ){
+        output.push_back( to_string(nums[0]) );
+        
+        return output;
+    }
+    
+    int left = nums[0];
+    int temp = nums[0];
+
+    string string_left, string_right;
+
+    for(int i=1 ; i<nums.size() ; i++){
+        temp++;
+
+        if( temp != nums[i] ){
+            // this is a test if a single element out of range appears in start
+            // or in between the list
+            if( temp-1 != left ){
+                string_left = to_string(left);
+                string_right = to_string(temp-1);
+
+                output.push_back( string_left + "->" + string_right );
+
+                left = nums[i];
+                temp = nums[i];
+            }
+            else{
+                string_left = to_string(left);
+                
+                output.push_back(string_left);
+
+                left = nums[i];
+                temp = nums[i];
+            }
+        }
+    }
+
+    // at the end we need to add the last range
+    if( left == temp ){
+        // the last element is a single element and not a right of some range
+        string_left = to_string(left);
+
+        output.push_back(string_left);
+    }
+    else{
+        // right is a part of some range and should be included
+        string_left = to_string(left);
+        string_right = to_string(temp);
+
+        output.push_back(string_left + "->" + string_right);
+    }
+
+    return output;
+
 }

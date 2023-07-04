@@ -94,5 +94,89 @@ int BinarySearchProblems::search_rotated(vector<int>& nums, int target){
 
     */
 
-    
+    return 0;
+}
+
+// Ques-4 Insert Interval
+vector<vector<int>> BinarySearchProblems::merge_intervals(vector<vector<int>>& intervals){
+    /*
+        Subroutine function required in insert interval problem
+    */
+
+    // we do not need to sort the intervals in our question
+    // because the intervals array is already sorted
+    // sort(intervals.begin(), intervals.end());
+
+    vector<vector<int>> output;
+
+    for(auto interval : intervals){
+        if( output.empty() ){
+            output.push_back(interval);
+        }
+        else{
+            if( output.back()[1] >= interval[0] ){
+                output.back()[1] = max(interval[1], output.back()[1]);
+            }
+            else{
+                output.push_back(interval);
+            }
+        }
+    }
+
+    return output;
+}
+
+vector<vector<int>> BinarySearchProblems::insert_interval(vector<vector<int>>& intervals, vector<int>& new_interval){
+    /*
+        NOTE:-
+        -> this question used another question on merging intervals already
+        solved before
+
+        APPROACH:-
+        -> find the correct insertion position for the new interval
+        by using binary search
+        -> merge the intervals starting from the interval before the 
+        newly placed interval
+
+        Time complexity -> O(n)
+        Space complexity -> O(1)
+    */
+
+    vector<vector<int>> output;
+
+    int left = 0;
+    int right = intervals.size()-1;
+
+    int mid;
+
+    while( (right-left) > 1 ){
+        mid = (right+left)/2;
+
+        if( intervals[mid][0] == new_interval[0] ){
+            // exact index for the new insertion is found
+            break;
+        }
+        else if( intervals[mid][0] > new_interval[0] ){
+            right = mid;
+        }
+        else{
+            left = mid;
+        }
+    }
+
+    for(int i=0 ; i<=mid ; i++){
+        output.push_back(intervals[i]);
+    }
+
+    output.push_back(new_interval);
+
+    for(int i=mid+1 ; i<intervals.size() ; i++){
+        output.push_back(intervals[i]);
+    }
+
+    // now merge intervals of the new array
+    output = merge_intervals(output);
+
+    return output;
+
 }

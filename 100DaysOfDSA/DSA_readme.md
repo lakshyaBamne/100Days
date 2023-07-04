@@ -102,7 +102,8 @@ Data Strucutres & Algorithms
 *DAY-9 4th-July-2023*
 
 - Question Practice
-    - []()
+    - [Summary Ranges](https://leetcode.com/problems/summary-ranges/description/)
+    - [Insert Interval](https://leetcode.com/problems/insert-interval/description/)
 
 - DSA Implementations
     - None on this day
