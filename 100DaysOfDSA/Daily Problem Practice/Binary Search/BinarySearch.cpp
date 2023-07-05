@@ -97,7 +97,7 @@ int BinarySearchProblems::search_rotated(vector<int>& nums, int target){
     return 0;
 }
 
-// Ques-4 Insert Interval
+// Ques-4 (Subroutine )
 vector<vector<int>> BinarySearchProblems::merge_intervals(vector<vector<int>>& intervals){
     /*
         Subroutine function required in insert interval problem
@@ -126,6 +126,7 @@ vector<vector<int>> BinarySearchProblems::merge_intervals(vector<vector<int>>& i
     return output;
 }
 
+// Ques-4 Insert Interval
 vector<vector<int>> BinarySearchProblems::insert_interval(vector<vector<int>>& intervals, vector<int>& new_interval){
     /*
         NOTE:-
@@ -180,3 +181,66 @@ vector<vector<int>> BinarySearchProblems::insert_interval(vector<vector<int>>& i
     return output;
 
 }
+
+// Ques-5 Search Insert position
+int BinarySearchProblems::search_insert_position(vector<int>& nums, int target){
+    int left = 0;
+    int right = nums.size()-1;
+
+    int mid = (left+right)/2;
+
+    while( left <= right ){
+        mid = (left+right)/2;
+        
+        if( nums[mid] == target ){
+            return mid;
+        }
+        else if( nums[mid] < target ){
+            left = mid+1;
+        }
+        else{
+            right = mid-1;
+        }
+    }   
+
+    return left;
+
+}
+
+// Ques-6 Minimum number of arrows to burst all balloons
+int BinarySearchProblems::burst_balloons(vector<vector<int>>& points){
+    sort(points.begin(), points.end());
+    
+    vector<vector<int>> last_interval;
+
+    int output = 0;
+
+    // a single balloon can be burst using a single arrow
+    if( points.size() == 1 ){
+        return 1;
+    }
+
+    for( auto interval : points ){
+        if( last_interval.empty() ){
+            last_interval.push_back(interval);
+
+            output++;
+        }
+        else{
+            if( last_interval.back()[1] >= interval[0] ){
+                // there is overlap between the last intersection and new interval
+                last_interval.back()[0] = max(last_interval.back()[0], interval[0]);
+                last_interval.back()[1] = min(last_interval.back()[1], interval[1]);
+            }
+            else{
+                last_interval.back()[0] = interval[0];
+                last_interval.back()[1] = interval[1];
+
+                output++;
+            }
+        }
+    }
+
+    return output;
+}
+

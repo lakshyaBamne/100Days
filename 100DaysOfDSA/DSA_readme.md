@@ -113,7 +113,8 @@ Data Strucutres & Algorithms
 *DAY-10 5th-July-2023*
 
 - Question Practice
-    - []()
+    - [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
+    - [Minimum Arrows to burst all balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/)
 
 - DSA Implementations
     - None on this day
@@ -122,6 +123,7 @@ Data Strucutres & Algorithms
 
 *__SUMMARY : DAY 1-10__*
 
-- 
+- Successfully maintained a 10 day streak on LeetCode and solved __20 Questions (11 Easy, 9 Medium, 0 Hard)__.
+- Solved problems on Arrays, Two-pointers, Binary Search, Intervals, Matrices and Strings.
 
 ---

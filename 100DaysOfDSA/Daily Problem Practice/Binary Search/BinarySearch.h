@@ -39,4 +39,19 @@ public:
     static vector<vector<int>> merge_intervals(vector<vector<int>>& intervals);
     static vector<vector<int>> insert_interval(vector<vector<int>>& intervals, vector<int>& new_interval);
 
+    /*
+        Ques-5 Search Insert Position
+
+        LeetCode -> https://leetcode.com/problems/search-insert-position/
+    */
+    static int search_insert_position(vector<int>& nums, int target);
+
+    /*
+        Ques-6 Minimum number of arrows to burst all balloons
+
+        LeetCode -> https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
+    */
+    static int burst_balloons(vector<vector<int>>& points);
+
+
 };
