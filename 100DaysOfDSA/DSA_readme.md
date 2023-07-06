@@ -127,3 +127,13 @@ Data Strucutres & Algorithms
 - Solved problems on Arrays, Two-pointers, Binary Search, Intervals, Matrices and Strings.
 
 ---
+
+*DAY-11 6th-July-2023*
+
+- Question Practice
+    - [Two sum](https://leetcode.com/problems/two-sum/)
+
+- DSA Implementation
+    - None on this day
+
+---
