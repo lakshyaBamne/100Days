@@ -137,3 +137,13 @@ Data Strucutres & Algorithms
     - None on this day
 
 ---
+
+*DAY-12 7th-July-2023*
+
+- Question Practice
+    - [Ransom Note](https://leetcode.com/problems/ransom-note/)
+
+- DSA Implementation
+    - None on this day
+
+---
