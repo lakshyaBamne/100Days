@@ -147,3 +147,33 @@ Data Strucutres & Algorithms
     - None on this day
 
 ---
+
+*DAY-13 8th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementation
+    - None on this day
+
+---
+
+*DAY-14 9th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementation
+    - None on this day
+
+---
+
+*DAY-15 10th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementation
+    - DynamicArray class with STL vector like functionality and usage
+
+---
