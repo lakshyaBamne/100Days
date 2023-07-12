@@ -102,6 +102,25 @@ public:
     */
     static vector<string> summary_ranges(vector<int>& nums);
 
+    /*
+        Ques-11 Kth largest element (Using the Quick-Select Algorithm)
+
+        LeetCode -> https://leetcode.com/problems/kth-largest-element-in-an-array/
+    */
+    static int get_sorted_pos(vector<int>& nums, int left, int right);
+    static int get_sorted_pos_random(vector<int>& nums, int left, int right);
+    static int random_number_generator(int high, int low);
     
+    static int order_statistics(vector<int>& nums, int k);
+
+    /*
+        Ques-12 K closest points to the origin
+
+        LeetCode -> https://leetcode.com/problems/k-closest-points-to-origin/
+    */
+    static int find_pivot_pos(vector<float>& nums, int left, int right);
+    static float quick_select(vector<float>& nums, int k);
+
+    static vector<vector<int>> kClosest(vector<vector<int>>& nums, int k);
 };
 

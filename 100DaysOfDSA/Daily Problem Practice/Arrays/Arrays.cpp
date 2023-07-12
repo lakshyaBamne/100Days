@@ -5,6 +5,7 @@
 #include<utility>
 #include<algorithm>
 #include<string>
+#include<math.h>
 
 using namespace std;
 
@@ -557,4 +558,184 @@ vector<string> ArrayProblems::summary_ranges(vector<int>& nums){
 
     return output;
 
+}
+
+// Ques-11 Kth largest element (without sorting) => Order Statistics
+
+/*
+    Utility function takes in a subarray and returns the position of the 
+    pivot after placing it at it's correct sorted position
+
+    -> takes the first element of the subarray as the pivot index at each iteration
+*/
+int ArrayProblems::get_sorted_pos(vector<int>& nums, int left, int right){
+    int pivot_index = left;
+
+    for(int i=left+1 ; i<=right ; i++){
+        if( nums[i] > nums[left] ){
+            swap(nums[i], nums[++pivot_index]);
+        }
+    }
+
+    swap(nums[pivot_index], nums[left]);
+
+    return pivot_index;
+}
+
+/*
+    Randomized variation of the above utility function
+
+    -> finds a random number between left and right (inclusive) and uses it as pivot
+    -> replace the random pivot with the first element and apply the same procedure
+*/
+
+// Utility function to generate a random number in a range
+int ArrayProblems::random_number_generator(int high, int low){
+    // use srand() to generate a seed in the main function once
+    // #include<cstdlib>
+    // #include<time.h>
+    // -> srand(time(0))
+
+    return ( (rand() % (high-low+1)) + low );
+}
+
+int ArrayProblems::get_sorted_pos_random(vector<int>& nums, int left, int right){
+    int pivot_index = random_number_generator(right, left);
+
+    // swap left and pivot_index elements
+    swap(nums[left], nums[pivot_index]);
+    pivot_index = left;
+
+    // repeat the same procedure
+    for(int i=left+1 ; i<=right ; i++){
+        if( nums[i] > nums[left] ){
+            swap(nums[i], nums[++pivot_index]);
+        }
+    }
+
+    swap(nums[pivot_index], nums[left]);
+
+    return pivot_index;
+}
+
+
+int ArrayProblems::order_statistics(vector<int>& nums, int k){
+    /*
+        NOTE:-
+
+        APPROACH:-
+
+        This approach is called Order statistics and is very similar to Quick Sort
+        But at the end of the algorithm the array is not sorted
+
+        -> select any random pivot index and reorder the array in place such that
+        the pivot element is at it's correct sorted position
+        i.e., all elements smaller than the element are at it's left and
+        all elements greater than the element are at it's right
+    */
+
+    int left = 0;
+    int right = nums.size()-1;
+
+    int pivot_position_curr;
+
+    while(left < right){
+
+        pivot_position_curr = get_sorted_pos_random(nums, left, right);
+
+        if( pivot_position_curr == k-1 ){
+            return nums[pivot_position_curr];
+        }
+        else if(pivot_position_curr < k-1){
+            left = pivot_position_curr+1;
+        }
+        else{
+            right = pivot_position_curr-1;
+        }
+    }
+
+    // if control reaches here, left == right
+    return nums[left];
+
+}
+
+/*
+    Ques-12 K closest points to the origin
+*/
+int ArrayProblems::find_pivot_pos(vector<float>& nums, int left, int right){
+    int pivot_index = ArrayProblems::random_number_generator(right, left);
+    
+    swap(nums[pivot_index], nums[left]);
+    pivot_index = left;
+
+    // now apply the quick select sub routine
+    for(int i=left+1 ; i<=right ; i++){
+        if( nums[i] < nums[left] ){
+            swap(nums[++pivot_index], nums[i]);
+        }
+    }
+
+    swap(nums[left], nums[pivot_index]);
+
+    return pivot_index;
+}
+
+// function to return the kth smallest element in an array
+float ArrayProblems::quick_select(vector<float>& nums, int k){
+    int left = 0;
+    int right = nums.size()-1;
+
+    int pivot_index_curr;
+
+    while( left < right ){
+        cout << left << " " << right << endl;
+
+        pivot_index_curr = ArrayProblems::find_pivot_pos(nums, left, right);
+
+        if( pivot_index_curr == k-1 ){
+            return nums[pivot_index_curr];
+        }
+        else if(pivot_index_curr < k-1){
+            left = pivot_index_curr+1;
+        }
+        else{
+            right = pivot_index_curr-1;
+        }
+
+    }
+
+    // if control reaches here, left==right and that should be the answer
+    return nums[left];
+}
+
+vector<vector<int>> ArrayProblems::kClosest(vector<vector<int>>& points, int k) {
+    vector<vector<int>> output;
+    vector<float> dist;
+
+    // initialize the distance array
+    for(auto point : points){
+        dist.push_back( sqrt( pow(point[0],2) + pow(point[1],2) ) );
+    }
+
+    for(auto i : dist){
+        cout << i << " ";
+    }
+
+    // now find the kth smallest element in the distance array
+    float limit_dist = quick_select(dist, k);
+
+    cout << "limit_dist = " << limit_dist;
+
+    for(auto point : points){
+        if( output.size() >= k ){
+            break;
+        }
+        else{
+            if( (float)sqrt( pow(point[0],2)+pow(point[1],2) ) <= limit_dist ){
+                output.push_back(point);
+            }
+        }
+    }
+
+    return output;
 }

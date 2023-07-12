@@ -9,9 +9,10 @@ int main(){
     DynamicArray arr_2(10);
     DynamicArray arr_3(5,-10);
 
-    cout << arr_1[0] << endl;
-    cout << arr_2[5] << endl; 
-    cout << arr_3[4] << endl;
+    arr_3.insert(1,3);
+
+    arr_3.print_array();
+
 
     return 0;
 }

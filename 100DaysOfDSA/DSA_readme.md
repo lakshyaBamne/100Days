@@ -177,3 +177,23 @@ Data Strucutres & Algorithms
     - DynamicArray class with STL vector like functionality and usage
 
 ---
+
+*DAY-16 11th-July-2023*
+
+- Question Practice
+    - [Kth largest element (Using Randomized Quick-Select Algorithm)](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+
+- DSA Implementation
+    - Added more methods to the STL vector like class
+
+---
+
+*DAY-17 12th-July-2023*
+
+- Question Practice
+    - [K closest points to origin (using Quick Select algorithm)](https://leetcode.com/problems/k-closest-points-to-origin/)
+
+- DSA Implementation
+    - None on this day
+
+---
