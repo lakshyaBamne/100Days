@@ -197,3 +197,33 @@ Data Strucutres & Algorithms
     - None on this day
 
 ---
+
+*DAY-18 13th-July-2023*
+
+- Question Practice
+    - [Maximum product of two elements in an array](https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/)
+
+- DSA Implementation
+    - Min Heap Implementation and STL priority_queue practice
+
+---
+
+*DAY-19 14th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementation
+    - None on this day
+
+---
+
+*DAY-20 15th-July-2023*
+
+- Question Practice
+    - []()
+
+- DSA Implementation
+    - None on this day
+
+---

@@ -9,16 +9,19 @@
 
 using namespace std;
 
-class heap{
+class MinHeap{
 public:
+    // min_heapify is used to correct the conflict at a single node
+    static void min_heapify(vector<int>& arr, int parent);
 
-//! UTILITY FUNCTIONS
+    // build min heap is used to build a min-heap from any unordered array
+    static void build_min_heap(vector<int>& arr);
 
-//! HEAP OPERATIONS
-    // heapify operations => both take O(logN)
-    static void max_heapify(vector<int>& arr);
-    
-    static void min_heapify(vector<int>& arr);
+
+
+};
+
+class MaxHeap{
 
 };
 
