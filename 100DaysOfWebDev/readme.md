@@ -1,11 +1,3 @@
-# 100 Days Challenges
-
----
-
-### 100 Days of DSA
-
----
-
 ### 100 Days of Web Development
 
 - *Starting web development on 25th August 2023*
